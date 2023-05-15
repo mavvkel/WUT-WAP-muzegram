@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="column" id="login_col">
+        <div class="shadow-box has-text-centered-desktop " id="post_section">
+            <div class="block title is-2">
+                Sign in
+            </div>
+            <form method="POST">
+                <label class="post_info"> Username is max 30 character long. Only letters, digits, and '_' allowed. </label>
+                {% csrf_token %}
+                {% for field in form %}
+                    <label class="post_info" for="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                {% endfor %}
+                <a href="{% url 'login' %}">
+                    <button class="button is-dark" type="button">
+                        Go back
+                    </button>
+                </a>
+                <button class="button main" type="submit">
+                    Sign in
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="column stretched_down" id="profile_posts">
+        <p class="title is-1" style="color: white; font-size: 6em">
+            {{ profile.user.username }}
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="buttons has-addons">
+                {% if profile.user.id is accessing_profile.user.id or profile.user.is_superuser %}
+                    <button class="button is-good is-static">Follow</button>
+                    <button class="button is-danger is-static">Unfollow </button>
+                {% elif profile in user.profile.follows.all %}
+                    <button class="button is-good is-static">Follow</button>
+                    <button class="button is-danger" name="follow" value="unfollow">
+                        Unfollow
+                    </button>
+                {% else %}
+                    <button class="button is-good" name="follow" value="follow">
+                        Follow
+                    </button>
+                    <button class="button is-danger is-static">Unfollow</button>
+                {% endif %}
+            </div>
+        </form>
+
+        <div class="block has-text-right">
+            <a href="{% url 'Platform:profile-list' %}">
+                <button class="button main ">
+                    All Profiles
+                </button>
+            </a>
+        </div>
+
+
+        <div class="content">
+            {% for post in profile.user.posts.all %}
+                <div class="shadow-box">
+                    {{ post.text_content }}
+                    <span class="post_info">
+                        ({{ post.publication_date }})
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="column stretched_down" id="followed_by_column">
+        <div class="block" id="followed_by">
+        <p class="title is-3">
+            Followed by:
+        </p>
+            <ul>
+                {% for follower in profile.followed_by.all %}
+                    {% if follower.user.id is not profile.user.id %}
+                        <div class="block">
+                            <div class="card is-centered" style="width: available">
+                                <a href="{% url 'Platform:profile' follower.user.profile.id %}">
+                                    <div class="card-content is-align-content-center">
+                                        <div class="media">
+                                            <div class="is-align-content-center has-text-centered-desktop">
+                                                <figure class="image is-96x96" style="margin-bottom: 1em">
+                                                    <img src="https://bulma.io/images/placeholders/96x96.png"
+                                                         alt="Placeholder image">
+                                                </figure>
+                                                <p class="subtitle is-5">
+                                                    @{{ follower.user.username|lower }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock content %}

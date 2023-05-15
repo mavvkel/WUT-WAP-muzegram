@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main feed</title>
+
+    <style>
+        :root {
+            --background_color: #232323;
+            #--accent_color: #ff8211;
+            --second_color: gray;
+
+            --accent-gradient: linear-gradient(to bottom right, #ff8211, #ffac11)
+        }
+
+        html, body
+        {
+            height: 100%;
+            margin: 0;
+        }
+
+        .main_text
+        {
+            color: var(--second_color);
+            font-size: x-large;
+        }
+
+        ::placeholder
+        {
+            color: lightgray;
+        }
+
+        #main_container
+        {
+            background: var(--background_color);
+            height: 100%;
+        }
+
+        #login_window
+        {
+            border: 1px solid var(--second_color);
+            border-radius: 12px;
+            width: 500px;
+        }
+
+        #mid
+        {
+            /*
+            display: flex;
+            align-content: center;
+            align-items: center;
+            */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input
+        {
+            background: var(--background_color);
+            border-radius: 8px;
+            border: 1px solid var(--second_color);
+            margin: 5px;
+        }
+
+        label
+        {
+            color: var(--second_color);
+            margin: 5px;
+        }
+
+        input[type=submit]
+        {
+            height: 40px;
+            width: 100px;
+            color: var(--second_color)
+        }
+
+        .textinput
+        {
+            height: 20px;
+            width: 140px;
+            color: var(--second_color);
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        #header
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: #171717;
+        }
+
+        #footer
+        {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #171717;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="main_container">
+    <div id="header">
+        MAIN FEED
+    </div>
+    <!--
+    <div>
+        <div id="mid">
+            <div id="login_window" >
+
+                <div style="text-align: center;">
+                    <h1 class="main_text">Log in</h1>
+                </div>
+
+                <form action="index.html" method="post">
+                    {% csrf_token %}
+                    <label for="login">Login</label><br>
+                    <input type="text" id="login" class="textinput" placeholder="CoolBean420" /><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" class="textinput" placeholder="********" /><br>
+                    <input type="submit" value="Log in">
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="footer">
+
+    </div>
+    -->
+</div>
+
+</body>
+</html>

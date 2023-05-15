@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'commonStyle.css' %}"/>
+    <title>Platform</title>
+</head>
+
+
+<body>
+<div class="main">
+    {% if user.is_authenticated %}
+    <a href="{% url 'Platform:feed' %} ">
+        <section class="head-bar">
+            <div class="head-bar-content">
+                <h1 id="title">MuzeGram</h1>
+                <p id="subtitle">
+                    Connect with people.
+                </p>
+            </div>
+        </section>
+    </a>
+    {% else %}
+        <section class="head-bar">
+            <div class="head-bar-content">
+                <h1 id="title">MuzeGram</h1>
+                <p id="subtitle">
+                    Connect with people.
+                </p>
+            </div>
+        </section>
+    {% endif %}
+    <div class="container">
+        <div class="columns">
+
+            {% block content %}
+
+            {% endblock content %}
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="column" id="login_col">
+        <div class="shadow-box has-text-centered-desktop " id="post_section">
+            <div class="block title is-2">
+                Log in
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button main" type="submit">
+                    Log in
+                </button>
+                <a href="{% url 'Platform:register' %}">
+                    <button class="button main" type="button">
+                        Sign in
+                    </button>
+                </a>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

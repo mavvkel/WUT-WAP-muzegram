@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="column">
+        <div class="shadow-box has-text-right" id="post_section">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button is-good" type="submit">
+                    Post
+                </button>
+
+            </form>
+        </div>
+
+        {% for post in followed_posts %}
+            <div class="shadow-box">
+                <span id="username"> {{ post.owner.username }} </span>
+                <span class="accent-text" id="prompt"> ⋙ </span>
+                {{ post.text_content }}
+                <span class="post_info"> ({{ post.publication_date }}) </span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <div class="column">
+            <a href="{% url 'Platform:profile-list' %} ">
+                <button class="button main is-fullwidth">
+                    All Profiles
+                </button>
+            </a>
+            <a href="{% url 'Platform:profile' request.user.profile.id %} ">
+                <button class="button main is-fullwidth">
+                    My Profile
+                </button>
+            </a>
+            <div class="spaced_label">
+                <p class="subtitle is-r">
+                    <span class="post_info">
+                        Logged in as @{{ user.username|lower }}
+                    </span>
+                </p>
+            </div>
+            <a href="{% url 'logout' %}" >
+                <button class="button main is-fullwidth">
+                    Log out
+                </button>
+            </a>
+        </div>
+    </div>
+
+{% endblock content %}
